@@ -1,41 +1,34 @@
 /****************************************************************
-V2 https://editor.p5js.org/Anne-Laure/sketches/6S4MxN6zw
+V3 https://editor.p5js.org/Anne-Laure/sketches/JsVMS3ENO
 
 Charger 1 image aléatoire sur unsplash et afficher son url
 
-Partie de V1 V1 https://editor.p5js.org/Anne-Laure/sketches/yLg3LMzqL
+Partie de V2 https://editor.p5js.org/Anne-Laure/sketches/6S4MxN6zw
 ****************************************************************/
 
-var numItemsToGenerate = 1; 
 var imgURL ;
 var drawLoop = true ;
 var dataLoaded = false ;
 
-function renderItem(){
+function preload() {
   
-  //https://dev.to/desi/using-the-unsplash-api-to-display-random-images-15co
-  
-  fetch(`https://source.unsplash.com/random/512x302`).then((response)=> {   
+  fetch(`https://source.unsplash.com/random/512x302`).then((response)=> {  
     imgURL = response.url ;
     print("---", imgURL) ;
-    
     // charger l'image 
     img = loadImage( imgURL );
-    
     return imgURL ;
     
-  }) 
+  })   
 }
 
 function setup() {
   
   createCanvas(windowWidth, windowHeight);
-  for(let i=0;i<numItemsToGenerate;i++){
-    let test = renderItem();
 
-    // A ce stade test ne contient encore rien
-    print("aaa", test) ;
-  }
+    // voir aussi https://p5js.org/reference/#/p5/loadJSON 
+    print("aaa", imgURL) ;
+
 }
 
 function draw() {

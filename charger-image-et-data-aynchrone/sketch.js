@@ -1,14 +1,13 @@
 /****************************************************************
-V3 https://editor.p5js.org/Anne-Laure/sketches/JsVMS3ENO
+https://editor.p5js.org/Anne-Laure/sketches/w_cCQUJyQ
 
 Charger 1 image aléatoire sur unsplash et afficher son url
 
-Partie de V2 https://editor.p5js.org/Anne-Laure/sketches/6S4MxN6zw
+construite à partir de https://editor.p5js.org/Anne-Laure/sketches/JsVMS3ENO 
 ****************************************************************/
 
 var imgURL ;
 var drawLoop = true ;
-var dataLoaded = false ;
 
 function preload() {
   
@@ -16,7 +15,7 @@ function preload() {
     imgURL = response.url ;
     print("---", imgURL) ;
     // charger l'image 
-    img = loadImage( imgURL );
+    img = loadImage( imgURL, waitForElement );
     return imgURL ;
     
   })   
@@ -33,15 +32,7 @@ function setup() {
 
 function draw() {
     
-  if ( drawLoop ) { 
-    waitForElement( imgURL )  ;
-    if ( dataLoaded ) {       
-      print('draw rrr', imgURL ) ; 
-      drawLoop = false ;
-
-    } 
-      
-  } else {
+  if ( !drawLoop ) { 
     
       background(220) ;
       image(img, 10,10) ;
@@ -51,14 +42,13 @@ function draw() {
 }
 
 function waitForElement( variable ){
-  // source https://stackoverflow.com/questions/7307983/while-variable-is-not-defined-wait
+  // voir https://stackoverflow.com/questions/7307983/while-variable-is-not-defined-wait
     if(typeof variable !== "undefined"){
         //variable exists, do what you want
         print("zzz", variable) ;
-        dataLoaded = true ;
+        drawLoop = false ;
     }
     else{
         setTimeout(waitForElement, 250);
-        dataLoaded = false ;
     }
 }

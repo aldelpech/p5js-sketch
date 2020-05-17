@@ -1,4 +1,6 @@
 /*
+Explications sur https://knowledge.parcours-performance.com/p5-js-images-api-json-ou-drop-fichiers/
+
 API unsplash Avec lien V5 https://editor.p5js.org/Anne-Laure/sketches/3981uPnuE
 
 un mix de 
@@ -91,5 +93,12 @@ function draw() {
 
 }
 
+// pour sauvegarder les url dans deux fichiers
+function mousePressed() {
+  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+    saveStrings(croppedUrl, 'croppedURLs.txt');
+    saveStrings(imgUrl, 'fullURLs.txt');
+  }
+}
 
 
